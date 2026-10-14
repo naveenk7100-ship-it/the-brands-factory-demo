@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { QuickStats } from './components/QuickStats';
-import { CollectionsSection } from './components/CollectionsSection';
-import { StyleStudio } from './components/StyleStudio';
-import { FitFinder } from './components/FitFinder';
-import { StoreExperience } from './components/StoreExperience';
-import { ReviewsSection } from './components/ReviewsSection';
-import { LocationSection } from './components/LocationSection';
-import { InquiryModal } from './components/InquiryModal';
-import { FloatingActionBar } from './components/FloatingActionBar';
-import { Footer } from './components/Footer';
+import { StoreGallery } from './components/StoreGallery';
+import { ApparelDepartments } from './components/ApparelDepartments';
+import { SizeFitGuide } from './components/SizeFitGuide';
+import { StoreServices } from './components/StoreServices';
+import { StoreReputation } from './components/StoreReputation';
+import { StoreLocation } from './components/StoreLocation';
+import { StoreFooter } from './components/StoreFooter';
+import { StoreFloatingActions } from './components/StoreFloatingActions';
+import { StoreInquiryModal } from './components/StoreInquiryModal';
 
 export function App() {
   const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
@@ -26,45 +25,42 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#08090E] text-slate-100 flex flex-col font-sans selection:bg-[#D4AF37] selection:text-black">
-      {/* Navigation */}
-      <Navbar onOpenInquiry={handleOpenInquiry} />
+    <div className="min-h-screen bg-[#0A0D14] text-slate-100 flex flex-col font-sans selection:bg-amber-500 selection:text-slate-950">
+      {/* Top Verified Header & Navigation */}
+      <Navbar />
 
       {/* Main Content */}
       <main className="flex-1">
-        {/* Luxury Hero Section */}
-        <Hero onOpenInquiry={handleOpenInquiry} />
+        {/* Image-Led Hero Section Featuring Real Storefront Photo */}
+        <Hero />
 
-        {/* Verified Quick Stats */}
-        <QuickStats />
+        {/* Real Listing Photo Gallery & Client Photo Upload Guide */}
+        <StoreGallery />
 
-        {/* Curated Collections & Fast WhatsApp Inquiry */}
-        <CollectionsSection onOpenInquiry={handleOpenInquiry} />
+        {/* Multi-Brand Apparel Departments & In-Store Categories */}
+        <ApparelDepartments onOpenInquiry={handleOpenInquiry} />
 
-        {/* Interactive Virtual Style Studio & Mix-and-Match Lookbook */}
-        <StyleStudio onOpenInquiry={handleOpenInquiry} />
+        {/* Practical Size & Fit Guide */}
+        <SizeFitGuide />
 
-        {/* Smart Fit & Tailoring Calculator */}
-        <FitFinder />
+        {/* Showroom Services & Amenities */}
+        <StoreServices />
 
-        {/* In-Store Showroom Experience */}
-        <StoreExperience onOpenInquiry={handleOpenInquiry} />
+        {/* Google Maps Verified Community Rating (4.3★) */}
+        <StoreReputation />
 
-        {/* Verified Google Maps Community Reviews & Trust Score */}
-        <ReviewsSection />
-
-        {/* Store Location, Navigation & Working Hours */}
-        <LocationSection />
+        {/* Store Coordinates, Verified Address, Schedule & FAQs */}
+        <StoreLocation />
       </main>
 
-      {/* Footer */}
-      <Footer />
+      {/* Store Footer */}
+      <StoreFooter />
 
-      {/* Sticky Bottom Actions on Mobile + Floating Quick Connect on Desktop */}
-      <FloatingActionBar onOpenInquiry={handleOpenInquiry} />
+      {/* Sticky Mobile Bar & Floating Desktop Shortcuts */}
+      <StoreFloatingActions onOpenInquiry={handleOpenInquiry} />
 
-      {/* In-Store Reservation & VIP Consultation Modal */}
-      <InquiryModal
+      {/* In-Store Inquiry & Size Check Modal */}
+      <StoreInquiryModal
         isOpen={inquiryModalOpen}
         onClose={handleCloseInquiry}
         initialTopic={inquiryTopic}

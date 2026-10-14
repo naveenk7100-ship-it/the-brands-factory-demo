@@ -1,35 +1,36 @@
-export interface FashionItem {
-  id: string;
-  name: string;
-  category: 'formals' | 'casuals' | 'denim' | 'festive' | 'streetwear' | 'accessories';
-  categoryLabel: string;
-  description: string;
-  fit: string;
-  fabric: string;
-  tag: string;
-  image: string;
-  highlights: string[];
-}
+// Authentic verified data for The Brands Factory (Karimnagar, Telangana)
+// Sourced directly from official Google Maps listing: https://maps.app.goo.gl/XzwuWgQ4mSoM8uvE7
 
-export interface LookbookCombo {
+const BASE = import.meta.env.BASE_URL;
+
+export interface RealPhoto {
   id: string;
   title: string;
-  occasion: string;
+  category: string;
+  caption: string;
+  url: string;
+  source: string;
+  isCover?: boolean;
+}
+
+export interface ApparelCategory {
+  id: string;
+  title: string;
+  tagline: string;
   description: string;
-  top: string;
-  bottom: string;
-  footwear: string;
-  accessory: string;
-  image: string;
-  palette: string[];
+  types: string[];
+  sizes: string;
+  highlights: string[];
+  badge?: string;
 }
 
 export const STORE_DATA = {
   name: "The Brands Factory",
-  tagline: "Karimnagar's Premier Multi-Brand Fashion Outlet",
-  subheading: "Curated Global Brands • Tailored Elegance • Direct Factory Pricing",
+  tagline: "Multi-Brand Readymade Garments & Apparel Store",
+  slogan: "MY STYLE • MY LOOK",
+  subheading: "More than 100+ Brands under one roof in Jyothinagar, Karimnagar",
   rating: 4.3,
-  ratingCategory: "Clothing Store",
+  ratingCategory: "Clothing store",
   verifiedGoogleMapsUrl: "https://maps.app.goo.gl/XzwuWgQ4mSoM8uvE7?g_st=aw",
   phone: "079957 99565",
   formattedPhone: "+91 79957 99565",
@@ -37,7 +38,10 @@ export const STORE_DATA = {
   callUrl: "tel:07995799565",
   address: "2-10-1297, near La Delicious Bakery, opp. Old DIG Building, Jyothinagar, Karimnagar, Telangana 505001",
   plusCode: "C4VF+5Q Karimnagar, Telangana",
-  landmark: "Opposite Old DIG Building, Beside La Delicious Bakery",
+  landmark: "Opposite Old DIG Building, Beside La Delicious Bakery, Jyothinagar",
+  city: "Karimnagar",
+  state: "Telangana",
+  pincode: "505001",
   hoursText: "Open Daily: 10:00 AM – 10:00 PM",
   hours: [
     { day: "Monday", open: "10:00 AM", close: "10:00 PM" },
@@ -48,269 +52,183 @@ export const STORE_DATA = {
     { day: "Saturday", open: "10:00 AM", close: "10:00 PM" },
     { day: "Sunday", open: "10:00 AM", close: "10:00 PM" },
   ],
-  stats: [
-    { label: "Google Verified Rating", value: "4.3 ★", detail: "Clothing Store listing" },
-    { label: "Top Brand Collections", value: "50+ Brands", detail: "Menswear, casuals & formals" },
-    { label: "Store Open Hours", value: "10 AM - 10 PM", detail: "Open all 7 days a week" },
-    { label: "Prime Location", value: "Jyothinagar", detail: "Opp. Old DIG Building, Karimnagar" },
+  verifiedBadges: [
+    { label: "Google Maps Verified Listing", detail: "4.3 ★ Rating" },
+    { label: "Physical Showroom", detail: "Jyothinagar, Karimnagar" },
+    { label: "Multi-Brand Hub", detail: "100+ Brands as per Store Board" },
+    { label: "Store Schedule", detail: "Open 7 Days (10 AM - 10 PM)" },
   ],
-  services: [
+  // Genuine photos extracted directly from Google Maps listing
+  realPhotos: [
     {
-      title: "Multi-Brand Curated Wardrobes",
-      desc: "Top domestic and international menswear labels gathered under one roof at factory-outlet pricing.",
-      icon: "Sparkles",
+      id: "photo-storefront-full",
+      title: "Storefront & Main Commercial Façade",
+      category: "Storefront",
+      caption: "Actual street-facing view of The Brands Factory showroom in Jyothinagar, Karimnagar showing entrance stairs, stainless steel railings, and 3D signage.",
+      url: `${BASE}images/real_storefront_full.jpg`,
+      source: "Google Maps Listing",
+      isCover: true,
     },
     {
-      title: "In-Store Master Alterations",
-      desc: "Complimentary precision sleeve, hem, and waist alterations on selected formal and casual purchases.",
-      icon: "Scissors",
+      id: "photo-signage",
+      title: "3D Store Signboard & Lighting",
+      category: "Exterior Branding",
+      caption: "Official black acrylic 3D lettering 'THE BRANDS FACTORY' with dark fascia and warm downlit wooden ceiling paneling.",
+      url: `${BASE}images/real_signage.jpg`,
+      source: "Google Maps Listing",
     },
     {
-      title: "Personal Styling Assistance",
-      desc: "Our wardrobe advisors assist you in building complete looks for weddings, interviews, and celebrations.",
-      icon: "UserCheck",
+      id: "photo-displays",
+      title: "Showroom Glass Windows & Clothing Displays",
+      category: "Showroom & Displays",
+      caption: "Display window viewing into the air-conditioned store showing mannequins, apparel racks, shirts, spotlights, and customers inside.",
+      url: `${BASE}images/real_clothing_displays.jpg`,
+      source: "Google Maps Listing",
     },
     {
-      title: "Air-Conditioned Trial Lounges",
-      desc: "Spacious, well-lit fitting rooms with 360-degree mirrors for effortless decision making.",
-      icon: "ShieldCheck",
+      id: "photo-brand-board",
+      title: "Store Brand Slogan Board",
+      category: "Brand Identity",
+      caption: "Official entrance pillar signboard featuring the BF monogram, 'My Style My Look', and 'More Than 100+ Brands' tag.",
+      url: `${BASE}images/real_brand_board.jpg`,
+      source: "Google Maps Listing",
     },
     {
-      title: "Weekly Fresh Arrivals",
-      desc: "Fresh consignments and limited clearance drops arriving every single week.",
-      icon: "PackageCheck",
+      id: "photo-entrance",
+      title: "Entrance Steps & Potted Palm Walkway",
+      category: "Entrance",
+      caption: "Polished steps leading up from the vehicle parking area to the elevated main glass entrance doors.",
+      url: `${BASE}images/real_entrance_steps.jpg`,
+      source: "Google Maps Listing",
     },
     {
-      title: "Express WhatsApp Inquiries",
-      desc: "Check size availability, reserve styles, or ask for catalog photos directly on WhatsApp.",
-      icon: "MessageSquare",
-    },
-  ],
-  categories: [
-    { id: 'all', label: 'All Collections' },
-    { id: 'formals', label: 'Formals & Suits' },
-    { id: 'casuals', label: 'Linen & Casuals' },
-    { id: 'denim', label: 'Denim & Trousers' },
-    { id: 'festive', label: 'Festive & Ethnic' },
-    { id: 'streetwear', label: 'Urban Streetwear' },
-    { id: 'accessories', label: 'Footwear & Accs' },
-  ],
-  featuredItems: [
-    {
-      id: "formal-1",
-      name: "Italian Cut Midnight Charcoal Blazer",
-      category: "formals",
-      categoryLabel: "Formals & Suits",
-      description: "Structured slim-profile blazer crafted with premium wool blend and peak lapels. Ideal for business galas and wedding receptions.",
-      fit: "Tailored Slim Fit",
-      fabric: "Poly-Wool Rich Blend",
-      tag: "Best Seller",
-      image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=800&q=80",
-      highlights: ["Peak Lapel", "Breathable Viscose Lining", "Double Back Vent", "Interior Stash Pocket"]
-    },
-    {
-      id: "formal-2",
-      name: "Royal Oxford Crisp Executive Shirt",
-      category: "formals",
-      categoryLabel: "Formals & Suits",
-      description: "100% long-staple cotton shirt with spread collar and wrinkle-resistant finish for round-the-clock crispness.",
-      fit: "Contemporary Regular Fit",
-      fabric: "100% Giza Cotton (120s Count)",
-      tag: "Wardrobe Essential",
-      image: "https://images.unsplash.com/photo-1620012253295-c15c429f66bf?auto=format&fit=crop&w=800&q=80",
-      highlights: ["Wrinkle Resistant", "Mother-of-Pearl Buttons", "Removable Collar Stays", "Curved Hem"]
-    },
-    {
-      id: "casual-1",
-      name: "Breezy French Linen Resort Shirt",
-      category: "casuals",
-      categoryLabel: "Linen & Casuals",
-      description: "Featherweight pure linen casual shirt with mandarin collar, designed for tropical comfort and relaxed weekends.",
-      fit: "Relaxed Summer Fit",
-      fabric: "100% Normandy Linen",
-      tag: "New Arrival",
-      image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=800&q=80",
-      highlights: ["Naturally Breathable", "Pre-Washed Softness", "Band Collar Detail", "Moisture Wicking"]
-    },
-    {
-      id: "casual-2",
-      name: "Mercerized Piqué Luxury Polo",
-      category: "casuals",
-      categoryLabel: "Linen & Casuals",
-      description: "High-sheen mercerized cotton polo with ribbed collar and tipping accents. Bridges smart-casual and daytime luxury.",
-      fit: "Athletic Smart Fit",
-      fabric: "Double Mercerized Combed Cotton",
-      tag: "Trending",
-      image: "https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?auto=format&fit=crop&w=800&q=80",
-      highlights: ["Silky Smooth Handfeel", "Anti-Pill Finish", "Engraved Button Placket", "Retains Color After Wash"]
-    },
-    {
-      id: "denim-1",
-      name: "Vintage Indigo Selvedge Jeans",
-      category: "denim",
-      categoryLabel: "Denim & Trousers",
-      description: "Authentic 13.5oz ring-spun denim with red-line selvedge ID, handcrafted whisker washes, and clean brass hardware.",
-      fit: "Slim Tapered Cut",
-      fabric: "99% Cotton, 1% Comfort Stretch",
-      tag: "Iconic Denim",
-      image: "https://images.unsplash.com/photo-1542272604-780c96856592?auto=format&fit=crop&w=800&q=80",
-      highlights: ["Japanese Red-Line Selvedge", "Reinforced Bar-Tacking", "Custom Rivets", "Fade-Ready Indigo"]
-    },
-    {
-      id: "denim-2",
-      name: "Tech-Chino Stretch Commuter Pants",
-      category: "denim",
-      categoryLabel: "Denim & Trousers",
-      description: "Hybrid trouser featuring tailored chino aesthetics with four-way mechanical stretch and stain-repellent finish.",
-      fit: "Tailored Ankle Fit",
-      fabric: "Cotton-Elastane Gabardine",
-      tag: "Popular Pick",
-      image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=800&q=80",
-      highlights: ["4-Way Dynamic Stretch", "Hidden Coin Pocket", "Shirt-Gripper Waistband", "Crease Retention"]
-    },
-    {
-      id: "festive-1",
-      name: "Emerald Silk Velvet Bandhgala Jodhpuri",
-      category: "festive",
-      categoryLabel: "Festive & Ethnic",
-      description: "Regal bandhgala jacket with metallic brass crest buttons and tonal embroidery on the mandarin collar. Designed for celebrations.",
-      fit: "Structured Imperial Fit",
-      fabric: "Micro-Velvet & Matka Silk Blend",
-      tag: "Wedding Edition",
-      image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
-      highlights: ["Hand-Finished Crest Buttons", "Concealed Placket", "Pocket Square Notch", "Dry Clean Luxury"]
-    },
-    {
-      id: "festive-2",
-      name: "Textured Raw Silk Kurta Set",
-      category: "festive",
-      categoryLabel: "Festive & Ethnic",
-      description: "Contemporary asymmetric cut festive kurta paired with slim churidar pants. Subtle woven self-stripes offer refined festive glow.",
-      fit: "Comfort Traditional Fit",
-      fabric: "Pure Raw Silk & Cotton Mix",
-      tag: "Festive Favorite",
-      image: "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&w=800&q=80",
-      highlights: ["Asymmetric Hemline", "Side Pockets", "Intricate Stitch Detailing", "Skin-Friendly Cotton Base"]
-    },
-    {
-      id: "streetwear-1",
-      name: "Heavyweight Graphic Boxy Hoodie",
-      category: "streetwear",
-      categoryLabel: "Urban Streetwear",
-      description: "420 GSM French terry cotton hoodie with dropped shoulders, double-layered hood, and minimal typography screen print.",
-      fit: "Oversized Street Cut",
-      fabric: "100% Carded French Terry (420 GSM)",
-      tag: "Gen-Z Trend",
-      image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80",
-      highlights: ["Heavyweight 420 GSM", "Double Lined Hood", "No Drawstring Clean Look", "Kangaroo Warmth Pocket"]
-    },
-    {
-      id: "accessories-1",
-      name: "Full-Grain Italian Leather Derby Shoes",
-      category: "accessories",
-      categoryLabel: "Footwear & Accs",
-      description: "Hand-burnished cognac leather derby with Goodyear welt construction, memory foam insole, and non-slip rubberized heel.",
-      fit: "Classic European Last",
-      fabric: "100% Full-Grain Calfskin Leather",
-      tag: "Luxury Finish",
-      image: "https://images.unsplash.com/photo-1533867617858-e7b97e060509?auto=format&fit=crop&w=800&q=80",
-      highlights: ["Hand Burnished Crust", "Orthopedic Cushioning", "Breathable Leather Sock", "Resoleable Construction"]
-    },
-    {
-      id: "accessories-2",
-      name: "Reversible Textured Leather Belt & Wallet Set",
-      category: "accessories",
-      categoryLabel: "Footwear & Accs",
-      description: "Dual-sided reversible belt (Black/Cognac Tan) paired with RFID-blocking minimalist bi-fold leather wallet.",
-      fit: "Adjustable 28-44 inch",
-      fabric: "Top-Grain Cowhide Leather",
-      tag: "Gift Ready",
-      image: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=800&q=80",
-      highlights: ["Twist-Lock Reversible Buckle", "RFID Protected Slots", "Gift Box Packaging", "Scratch-Resistant Grain"]
-    },
-    {
-      id: "streetwear-2",
-      name: "Vintage Cargo Utility Joggers",
-      category: "streetwear",
-      categoryLabel: "Urban Streetwear",
-      description: "Durable ripstop cotton cargo pants with multiple tactical bellows pockets and elasticated ankle cuffs.",
-      fit: "Relaxed Tapered",
-      fabric: "100% Military Ripstop Cotton",
-      tag: "Weekend Essential",
-      image: "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?auto=format&fit=crop&w=800&q=80",
-      highlights: ["6 Utility Pockets", "Reinforced Knee Panels", "Drawstring Waistband", "Durable Double Stitched"]
+      id: "photo-cinematic",
+      title: "Wide Angle Showroom View",
+      category: "Exterior",
+      caption: "Full cinematic perspective highlighting the commercial glass architecture, entrance, and central Jyothinagar corridor.",
+      url: `${BASE}images/real_hero_cinematic.jpg`,
+      source: "Google Maps Listing",
     }
-  ] as FashionItem[],
-  lookbooks: [
+  ] as RealPhoto[],
+
+  // In-Store Apparel Departments
+  apparelCategories: [
     {
-      id: "look-1",
-      title: "The Executive Gala",
-      occasion: "Corporate Dinners & Evening Celebrations",
-      description: "Charcoal peak-lapel blazer combined with a crisp Egyptian cotton spread shirt, tailored trousers, and hand-burnished brown monk straps.",
-      top: "Midnight Charcoal Blazer + White Giza Shirt",
-      bottom: "Charcoal Micro-Houndstooth Trousers",
-      footwear: "Double Monk Strap Leather Shoes",
-      accessory: "Textured Silk Pocket Square & Silver Chrono",
-      image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1000&q=80",
-      palette: ["#1A1D24", "#FFFFFF", "#C5A059", "#3E2723"]
+      id: "casual-shirts",
+      title: "Casual & Linen Shirts",
+      tagline: "Weekend Classics, Solids & Contemporary Prints",
+      description: "Extensive racks of casual button-downs, breathable linen shirts, textured cottons, checks, and Mandarin collar styles for every casual setting.",
+      types: ["Pure Linen Shirts", "Oxford Cotton Solids", "Contemporary Printed Shirts", "Checks & Stripes", "Mandarin / Band Collar"],
+      sizes: "Sizes: S (38) to 3XL (46)",
+      highlights: ["Breathable Cotton Blends", "Pre-washed Soft Finishes", "Casual & Friday Dressing"],
+      badge: "High Demand"
     },
     {
-      id: "look-2",
-      title: "Mediterranean Sundowner",
-      occasion: "Weekend Brunches, Resort Trips & Casual Evenings",
-      description: "Airy sky blue linen shirt unbuttoned over a tailored white crew tee, olive stretch chinos, and suede driving loafers.",
-      top: "Breezy Sky French Linen Shirt",
-      bottom: "Sand / Olive Tech Stretch Chinos",
-      footwear: "Tobacco Suede Driving Loafers",
-      accessory: "Tortoiseshell Wayfarer Sunglasses",
-      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=1000&q=80",
-      palette: ["#87CEEB", "#F4F1EA", "#556B2F", "#8B4513"]
+      id: "formals",
+      title: "Formals & Executive Wear",
+      tagline: "Office Attire, Crisp Formals & Sharp Trousers",
+      description: "Professional wardrobe staples including wrinkle-resistant executive dress shirts, tailored formal trousers, blazers, and coordinated workwear.",
+      types: ["Executive Dress Shirts", "Flat-Front Formal Trousers", "Single & Double Button Blazers", "Two-Piece Formal Suits"],
+      sizes: "Shirt Sizes: 38 - 46 | Waist: 30 - 42",
+      highlights: ["Formal Cuts", "Crease-Resistant Finishes", "Alteration Support In-Store"],
+      badge: "In-Store Fitting"
     },
     {
-      id: "look-3",
-      title: "Royal Heritage Festive",
-      occasion: "Sangeet, Reception & Festive Puja",
-      description: "Emerald bandhgala with subtle raw silk luster, layered over an ivory kurta and tapered churidar with velvet juttis.",
-      top: "Emerald Imperial Bandhgala Jacket",
-      bottom: "Ivory Spun Silk Churidar",
-      footwear: "Embroidered Velvet Juttis",
-      accessory: "Antique Brass Pocket Brooch",
-      image: "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&w=1000&q=80",
-      palette: ["#0B3C2A", "#FFFDD0", "#D4AF37", "#1E1E1E"]
+      id: "denim-chinos",
+      title: "Denim Jeans & Chinos",
+      tagline: "Durable Comfort Denim & Modern Trousers",
+      description: "Multi-brand jeans collection ranging from classic straight fits to modern slim tapers, stretch commuter chinos, and cargo trousers.",
+      types: ["Comfort Stretch Denim", "Slim Tapered Jeans", "Cotton Gabardine Chinos", "Utility Cargo Pants"],
+      sizes: "Waist Sizes: 28 to 42",
+      highlights: ["Stretch Comfort", "Reinforced Stitching", "Multiple Color Washes"],
+      badge: "Everyday Staple"
     },
     {
-      id: "look-4",
-      title: "Modern Metro Urban",
-      occasion: "Club Nights, Casual Fridays & Travel",
-      description: "Boxy heavyweight charcoal hoodie paired with dark selvedge raw denim and retro leather court sneakers.",
-      top: "Heavyweight Boxy Drop-Shoulder Hoodie",
-      bottom: "Raw Indigo Selvedge Tapered Denim",
-      footwear: "Minimalist Low-Top White Sneakers",
-      accessory: "Matte Black Crossbody Bag",
-      image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1000&q=80",
-      palette: ["#2B2D42", "#1D2A44", "#EDF2F4", "#111111"]
+      id: "tshirts-polos",
+      title: "T-Shirts & Polos",
+      tagline: "Polo Knits, Graphic Tees & Casual Basics",
+      description: "Piqué cotton polos, round neck graphic t-shirts, drop-shoulder streetwear, and minimal solid essentials for relaxed daily wear.",
+      types: ["Classic Piqué Polos", "Round Neck Cotton Tees", "Oversized Streetwear Tees", "Athletic Active Knits"],
+      sizes: "Sizes: S, M, L, XL, XXL",
+      highlights: ["100% Combed Cotton", "Bio-Washed Softness", "Shape-Retaining Ribbed Collars"],
+      badge: "Trending"
+    },
+    {
+      id: "festive-ethnic",
+      title: "Festive & Party Ensembles",
+      tagline: "Kurtas, Ethnic Jackets & Celebration Wear",
+      description: "Curated celebration wear for family functions, festivals, and weddings including textured festive kurtas, Nehru jackets, and Indo-western layers.",
+      types: ["Festive Kurta Sets", "Nehru & Modi Jackets", "Indo-Western Party Layers", "Textured Silk Blends"],
+      sizes: "Sizes: 38 to 44",
+      highlights: ["Festive Color Palette", "Subtle Texture Finishes", "Comfort Linings"],
+      badge: "Wedding & Puja"
+    },
+    {
+      id: "accessories",
+      title: "Accessories & Everyday Essentials",
+      tagline: "Finishing Details & Daily Complements",
+      description: "Genuine leather belts, wallets, formal socks, handkerchiefs, and accessories to complete your head-to-toe look.",
+      types: ["Leather Belts (Black & Tan)", "Bi-Fold Leather Wallets", "Socks & Handkerchief Packs", "Casual Caps & Accents"],
+      sizes: "Adjustable / Free Size",
+      highlights: ["Durable Leather", "Gift Packaging Available", "Storefront Counter Display"],
+      badge: "Counter Collection"
     }
-  ] as LookbookCombo[],
+  ] as ApparelCategory[],
+
+  // In-Store Services (Genuine and realistic)
+  storeServices: [
+    {
+      title: "Multi-Brand Shopping",
+      desc: "Wide collection of multi-brand readymade garments for men and youth under one air-conditioned roof.",
+      icon: "ShoppingBag"
+    },
+    {
+      title: "Trial & Fitting Rooms",
+      desc: "Spacious, well-lit in-store trial rooms so you can try sizes before purchasing.",
+      icon: "ShieldCheck"
+    },
+    {
+      title: "Alteration Support",
+      desc: "In-store assistance to help adjust trouser hems and fit for immediate comfort.",
+      icon: "Scissors"
+    },
+    {
+      title: "WhatsApp Size & Stock Check",
+      desc: "Check current arrivals or ask if your specific size is on the rack via direct WhatsApp chat.",
+      icon: "MessageCircle"
+    },
+    {
+      title: "Central Jyothinagar Location",
+      desc: "Conveniently situated opposite the Old DIG Building, beside La Delicious Bakery with nearby vehicle parking.",
+      icon: "MapPin"
+    },
+    {
+      title: "Open Daily 10 AM – 10 PM",
+      desc: "Extended opening hours 7 days a week to make shopping convenient after work or on weekends.",
+      icon: "Clock"
+    }
+  ],
+
   faqs: [
     {
       q: "Where is The Brands Factory located in Karimnagar?",
-      a: "The store is located at 2-10-1297, near La Delicious Bakery, right opposite the Old DIG Building in Jyothinagar, Karimnagar, Telangana 505001. You can find us easily on Google Maps via Plus Code C4VF+5Q Karimnagar."
+      a: "The store is located at 2-10-1297, near La Delicious Bakery, directly opposite the Old DIG Building in Jyothinagar, Karimnagar, Telangana 505001. Google Maps Plus Code: C4VF+5Q Karimnagar."
     },
     {
-      q: "What are your store timings?",
-      a: "The Brands Factory is open all 7 days of the week from 10:00 AM in the morning to 10:00 PM at night."
+      q: "What are your store hours?",
+      a: "The store is open all 7 days of the week from 10:00 AM to 10:00 PM."
     },
     {
-      q: "What categories of apparel are available?",
-      a: "We curate a comprehensive selection of men's branded clothing including formal suits, blazers, executive shirts, trousers, linen casuals, polos, premium denim, ethnic kurtas, bandhgalas, urban streetwear, and footwear/leather accessories."
+      q: "Can I check size and price availability on WhatsApp before visiting?",
+      a: "Yes! You can contact our store directly on WhatsApp at +91 79957 99565 or tap the WhatsApp button on this site to inquire about stock or reserve garments for in-store trial."
     },
     {
-      q: "Can I check stock or reserve an item on WhatsApp?",
-      a: "Yes! You can message our store directly at +91 79957 99565 or tap the WhatsApp button on this website to inquire about sizes, current arrivals, or reserve an ensemble before visiting."
+      q: "Are the photos on this website real photos of The Brands Factory?",
+      a: "Yes. All storefront and showroom photos featured on this website are genuine photographs taken directly from the verified Google Maps listing of The Brands Factory in Karimnagar."
     },
     {
-      q: "Do you offer fitting and trial rooms?",
-      a: "Yes, we have spacious, fully air-conditioned trial rooms and provide alteration support on selected apparel to ensure your clothes fit you flawlessly."
+      q: "Do you have trial rooms at the store?",
+      a: "Yes, our showroom features trial rooms and air conditioning so you can try on clothing comfortably."
     }
   ]
 };
